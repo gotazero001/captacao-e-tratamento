@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/v0-captacao-e-tratamento',
-  assetPrefix: '/v0-captacao-e-tratamento/',
+  basePath: '/gz',
+  assetPrefix: '/gz/',
   images: {
     unoptimized: true,
   },
