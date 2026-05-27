@@ -41,10 +41,10 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14 sm:h-16">
-          <a href="#inicio" className="flex items-center gap-2">
-            <Droplets className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
-            <span className="font-serif text-lg sm:text-xl font-semibold text-foreground">
+        <div className="flex items-center justify-between h-20 sm:h-24">
+          <a href="#inicio" className="flex items-center gap-3">
+            <Droplets className="h-8 w-8 sm:h-10 sm:w-10 text-primary" />
+            <span className="font-serif text-xl sm:text-2xl font-semibold text-foreground">
               Água da Chuva
             </span>
           </a>
@@ -54,7 +54,7 @@ export function Header() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                className="text-base font-medium text-muted-foreground hover:text-primary transition-colors"
               >
                 {item.label}
               </a>
@@ -78,11 +78,11 @@ export function Header() {
       {isOpen && (
         <>
           <div 
-            className="fixed inset-0 top-14 bg-background/80 backdrop-blur-sm md:hidden z-40"
+            className="fixed inset-0 top-20 sm:top-24 bg-background/80 backdrop-blur-sm md:hidden z-40"
             onClick={() => setIsOpen(false)}
             aria-hidden="true"
           />
-          <nav className="fixed inset-x-0 top-14 bg-background border-b border-border md:hidden z-50 animate-in slide-in-from-top-2 duration-200">
+          <nav className="fixed inset-x-0 top-20 sm:top-24 bg-background border-b border-border md:hidden z-50 animate-in slide-in-from-top-2 duration-200">
             <div className="flex flex-col py-4 px-4">
               {navItems.map((item) => (
                 <a
