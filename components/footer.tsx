@@ -2,7 +2,7 @@ import { Droplets, Github, Mail } from "lucide-react"
 
 const authors = [
   { name: "Vitor Hugo Brusarosco" },
-  { name: "Alan Ferreira da Silva" },
+  { name: "Heitor Rauster" },
   { name: "Hugo Leonardo Kern Lima" },
 ]
 
