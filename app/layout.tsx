@@ -1,15 +1,12 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Playfair_Display } from 'next/font/google'
+import { Kanit } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const inter = Inter({ 
-  subsets: ["latin"],
-  variable: '--font-inter'
-});
-const playfair = Playfair_Display({ 
-  subsets: ["latin"],
-  variable: '--font-playfair'
+const kanit = Kanit({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-kanit',
 });
 
 export const viewport: Viewport = {
@@ -24,8 +21,8 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: 'Água da Chuva | Captação e Tratamento Sustentável',
-  description: 'Projeto educacional sobre captação e tratamento de água da chuva com soluções práticas e sustentáveis',
+  title: 'Jack — 3D Creator',
+  description: 'Portfólio de Jack, criador 3D especializado em experiências visuais marcantes.',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -52,8 +49,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR" className="scroll-smooth bg-background">
-      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
+    <html lang="pt-BR" className="scroll-smooth">
+      <body className={`${kanit.variable} antialiased`}>
         {children}
         <Analytics />
       </body>

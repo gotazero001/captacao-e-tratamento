@@ -1,21 +1,28 @@
-import { Header } from "@/components/header"
-import { HeroSection } from "@/components/hero-section"
-import { SystemSection } from "@/components/system-section"
-import { AcademicSection } from "@/components/academic-section"
-import { BnccSection } from "@/components/bncc-section"
-import { ConclusionSection } from "@/components/conclusion-section"
-import { Footer } from "@/components/footer"
+'use client'
 
-export default function Home() {
-  return (
-    <main className="min-h-screen">
-      <Header />
-      <HeroSection />
-      <SystemSection />
-      <AcademicSection />
-      <BnccSection />
-      <ConclusionSection />
-      <Footer />
-    </main>
-  )
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+
+const marqueeImages = [
+  'https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif','https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif','https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif','https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif','https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif','https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif','https://motionsites.ai/assets/hero-vitara-preview-Cjz2QYyU.gif','https://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif','https://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif','https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif','https://motionsites.ai/assets/hero-designpro-preview-D8c5_een.gif','https://motionsites.ai/assets/hero-stellar-ai-preview-D3HL6bw1.gif','https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif','https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif','https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif','https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif','https://motionsites.ai/assets/hero-planet-orbit-preview-DWAP8Z1P.gif','https://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif','https://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif','https://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif','https://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif',
+]
+const projects = [
+  ['01','Client','Nextlevel Studio','hf_20260412_055344_5eff02e0-87a5-41ce-b64f-eb08da8f33db.png','hf_20260412_055431_11d841fd-8b41-46a5-82e4-b04f2407a7d8.png','hf_20260412_055451_e317bf2d-28d4-48cc-86b0-6f72f25b6327.png'],
+  ['02','Personal','Aura Brand Identity','hf_20260412_055654_911201c5-36d9-4bc6-bac7-331adfce159f.png','hf_20260412_055723_5ceda0b8-d9c2-4665-b2e3-83ba19ba76d1.png','hf_20260412_055753_adc5dcbd-a8e6-49c0-b43a-9b030d835cea.png'],
+  ['03','Client','Solaris Digital','hf_20260412_055759_963cfb0b-4bd1-4b0f-9d0a-09bd6cf95b2f.png','hf_20260412_060108_438f781a-9846-4dcc-89ab-c4e6cb830f5b.png','hf_20260412_055818_9d062121-ad7e-46b9-999a-1a6a692ef1ee.png'],
+]
+const image = (name: string) => `https://images.higgs.ai/?default=1&output=webp&url=${encodeURIComponent(`https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/${name}`)}&w=1280&q=85`
+const ease = [0.25, 0.1, 0.25, 1] as const
+
+function Reveal({ children, delay = 0, y = 30, className = '' }: { children: React.ReactNode; delay?: number; y?: number; className?: string }) {
+  return <motion.div className={className} initial={{ opacity: 0, y }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-50px' }} transition={{ duration: .8, delay, ease }}>{children}</motion.div>
 }
+function ContactButton() { return <a href="#contact" className="contact-button">Contact Me</a> }
+function Hero() { return <section className="hero" id="home"><nav><a href="#about">About</a><a href="#services">Price</a><a href="#projects">Projects</a><a href="#contact">Contact</a></nav><Reveal className="hero-title" delay={.15} y={40}><h1>Hi, i&apos;m jack</h1></Reveal><div className="hero-bottom"><Reveal delay={.35}><p>a 3d creator driven by crafting striking and unforgettable projects</p></Reveal><Reveal delay={.5}><ContactButton /></Reveal></div><motion.div className="portrait" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .6, duration: 1, ease }}><img src="https://shrug-person-78902957.figma.site/_components/v2/d24c01ad3a56fc65e942a1f501eb73db42d7cf9a/Rectangle_40443.81459862.png" alt="Retrato 3D de Jack" /></motion.div></section> }
+function Marquee() { const ref = useRef<HTMLElement>(null); const { scrollY } = useScroll(); const offset = useTransform(scrollY, v => Math.max(0, v - (ref.current?.offsetTop ?? 0) + (typeof window === 'undefined' ? 0 : window.innerHeight)) * .3); return <section ref={ref} className="marquee"><motion.div suppressHydrationWarning className="marquee-row" style={{ x: offset }}>{[...marqueeImages.slice(0,11),...marqueeImages.slice(0,11),...marqueeImages.slice(0,11)].map((src,i)=><img key={i} src={src} alt="Projeto 3D" loading="lazy" />)}</motion.div><motion.div suppressHydrationWarning className="marquee-row" style={{ x: useTransform(offset, v => -v) }}>{[...marqueeImages.slice(11),...marqueeImages.slice(11),...marqueeImages.slice(11)].map((src,i)=><img key={i} src={src} alt="Projeto 3D" loading="lazy" />)}</motion.div></section> }
+function About() { const text = 'With more than five years of experience in design, i focus on branding, web design, and user experience, i truly enjoy working with businesses that aim to stand out and present their best image. Let\'s build something incredible together!'; return <section className="about" id="about"><Reveal><h2>About me</h2></Reveal><Reveal delay={.15}><p>{text}</p></Reveal><Reveal delay={.3}><ContactButton /></Reveal></section> }
+const services = [['01','3D Modeling','Creation of detailed objects, characters, or environments tailored to specific client needs, ideal for games, products, and visualizations.'],['02','Rendering','High-quality, photorealistic renders that showcase designs with custom lighting, textures, and materials to bring concepts to life.'],['03','Motion Design','Dynamic animations and motion graphics that add energy and storytelling to brands, products, and digital experiences.'],['04','Branding','Crafting cohesive visual identities — from logos to full brand systems — that communicate a clear and memorable presence.'],['05','Web Design','Designing clean, modern, and conversion-focused websites with attention to layout, typography, and user experience.']]
+function Services() { return <section className="services" id="services"><Reveal><h2>Services</h2></Reveal><div className="service-list">{services.map(([n,name,desc],i)=><Reveal key={n} delay={i*.1} className="service"><strong>{n}</strong><div><h3>{name}</h3><p>{desc}</p></div></Reveal>)}</div></section> }
+function ProjectCard({ data, index }: { data: string[]; index: number }) { const ref = useRef(null); const { scrollYProgress } = useScroll({ target: ref, offset: ['start end','end start'] }); const scale = useTransform(scrollYProgress, [0,1], [1, 1 - (projects.length - 1 - index)*.03]); return <div className="project-wrap" ref={ref}><motion.article className="project-card" style={{ scale, top: `${index*28}px` }}><div className="project-top"><strong>{data[0]}</strong><div><span>{data[1]}</span><h3>{data[2]}</h3></div><a href="#contact" className="live-button">Live Project</a></div><div className="project-images"><div><img src={image(data[3])} alt={data[2]} /><img src={image(data[4])} alt={data[2]} /></div><img src={image(data[5])} alt={data[2]} /></div></motion.article></div> }
+function Projects() { return <section className="projects" id="projects"><Reveal><h2>Project</h2></Reveal>{projects.map((p,i)=><ProjectCard key={p[0]} data={p} index={i} />)}</section> }
+export default function Home() { return <main><Hero /><Marquee /><About /><Services /><Projects /></main> }
