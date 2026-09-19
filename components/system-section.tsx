@@ -64,7 +64,7 @@ export function SystemSection() {
   const [activeModal, setActiveModal] = useState<string | null>(null)
 
   return (
-    <section id="sistema" className="py-12 sm:py-16 md:py-24 bg-card">
+    <section id="sistema" className="system-section py-16 sm:py-24 md:py-32 bg-card">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
           <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 mb-3 sm:mb-4 text-xs sm:text-sm font-medium text-accent bg-accent/10 rounded-full border border-accent/20">
