@@ -21,8 +21,8 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: 'Jack — 3D Creator',
-  description: 'Portfólio de Jack, criador 3D especializado em experiências visuais marcantes.',
+  title: 'Captação e Tratamento de Água da Chuva',
+  description: 'Projeto educacional sobre captação, armazenamento e filtragem caseira de água da chuva.',
   generator: 'v0.app',
   icons: {
     icon: [
