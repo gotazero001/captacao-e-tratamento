@@ -38,10 +38,24 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
 /* A estética editorial e animada é aplicada aos blocos informativos existentes. */
 section { position: relative; }
 [id] { scroll-margin-top: 5rem; }
-.card, [data-slot='card'] { transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease, border-color .35s ease; }
-.card:hover, [data-slot='card']:hover { transform: translateY(-6px); box-shadow: 0 18px 50px color-mix(in oklab, var(--primary) 18%, transparent); }
+.card, [data-slot='card'] { transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s ease, border-color .35s ease; transform-style: preserve-3d; }
+.card:hover, [data-slot='card']:hover { transform: perspective(900px) translateY(-8px) rotateX(2deg) rotateY(-2deg); box-shadow: 0 22px 55px color-mix(in oklab, var(--primary) 22%, transparent); }
 button, a { transition: transform .25s ease, opacity .25s ease, background-color .25s ease, color .25s ease; }
 button:active, a:active { transform: scale(.97); }
+
+.hero-content { animation: hero-rise 1s cubic-bezier(.22,1,.36,1) both; }
+.water-orb { position: absolute; border-radius: 999px; background: radial-gradient(circle at 30% 25%, rgb(255 255 255 / .7), color-mix(in oklab, var(--primary) 55%, transparent) 34%, color-mix(in oklab, var(--accent) 28%, transparent) 72%, transparent); filter: blur(.2px); box-shadow: inset -12px -14px 24px rgb(0 75 110 / .14), 0 20px 60px color-mix(in oklab, var(--primary) 20%, transparent); transform-style: preserve-3d; animation: orb-drift 8s ease-in-out infinite; }
+.water-orb-one { width: 150px; height: 150px; left: 8%; top: 18%; }
+.water-orb-two { width: 92px; height: 92px; right: 12%; top: 24%; animation-delay: -2s; }
+.water-orb-three { width: 62px; height: 62px; right: 22%; bottom: 18%; animation-delay: -4s; }
+.floating-drop { animation: drop-float 4s ease-in-out infinite; filter: drop-shadow(0 12px 10px color-mix(in oklab, var(--primary) 22%, transparent)); }
+.water-cube { position: absolute; left: 22%; bottom: 17%; width: 42px; height: 42px; transform-style: preserve-3d; transform: rotateX(-22deg) rotateY(34deg); animation: cube-spin 12s linear infinite; }
+.cube-face { position: absolute; inset: 0; border: 1px solid color-mix(in oklab, var(--primary) 55%, white 15%); background: color-mix(in oklab, var(--primary) 18%, transparent); backdrop-filter: blur(2px); }
+.cube-front { transform: translateZ(21px); }.cube-back { transform: rotateY(180deg) translateZ(21px); }.cube-right { transform: rotateY(90deg) translateZ(21px); }.cube-left { transform: rotateY(-90deg) translateZ(21px); }.cube-top { transform: rotateX(90deg) translateZ(21px); }.cube-bottom { transform: rotateX(-90deg) translateZ(21px); }
+@keyframes hero-rise { from { opacity: 0; transform: translateY(24px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes orb-drift { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(18px, -24px, 34px) scale(1.06); } }
+@keyframes drop-float { 0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); } 50% { transform: translate3d(0, -18px, 28px) rotate(10deg); } }
+@keyframes cube-spin { to { transform: rotateX(338deg) rotateY(394deg); } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
 
  

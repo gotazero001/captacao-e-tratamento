@@ -15,11 +15,22 @@ export function HeroSection() {
       </div>
 
       {/* Animated Water Drops - escondido em telas muito pequenas */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none hidden sm:block">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none hidden sm:block" aria-hidden="true">
+        <div className="water-orb water-orb-one" />
+        <div className="water-orb water-orb-two" />
+        <div className="water-orb water-orb-three" />
+        <div className="water-cube">
+          <div className="cube-face cube-front" />
+          <div className="cube-face cube-back" />
+          <div className="cube-face cube-right" />
+          <div className="cube-face cube-left" />
+          <div className="cube-face cube-top" />
+          <div className="cube-face cube-bottom" />
+        </div>
         {[...Array(6)].map((_, i) => (
           <Droplet
             key={i}
-            className="absolute text-primary/20 animate-pulse"
+            className="absolute text-primary/30 floating-drop"
             style={{
               left: `${15 + i * 15}%`,
               top: `${10 + (i % 3) * 25}%`,
@@ -31,7 +42,7 @@ export function HeroSection() {
         ))}
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-8">
+      <div className="relative z-10 hero-content max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-8">
         <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 mb-4 sm:mb-6 text-xs sm:text-sm font-medium text-primary bg-primary/10 rounded-full border border-primary/20">
           Projeto Educacional
         </span>
