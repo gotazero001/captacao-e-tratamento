@@ -1,6 +1,7 @@
 import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
 import { SystemSection } from "@/components/system-section"
+import { WaterSimulation } from "@/components/water-simulation"
 import { AcademicSection } from "@/components/academic-section"
 import { BnccSection } from "@/components/bncc-section"
 import { ConclusionSection } from "@/components/conclusion-section"
@@ -12,6 +13,7 @@ export default function Home() {
       <Header />
       <HeroSection />
       <SystemSection />
+      <WaterSimulation />
       <AcademicSection />
       <BnccSection />
       <ConclusionSection />
