@@ -53,7 +53,7 @@ const stages = [
 
 export function WaterSimulation() {
   const [activeStage, setActiveStage] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(true)
+  const [isPlaying, setIsPlaying] = useState(false)
 
   useEffect(() => {
     if (!isPlaying) return
@@ -88,11 +88,23 @@ export function WaterSimulation() {
               return <button key={item.id} className={`scene-point point-${index + 1} ${activeStage === index ? "is-active" : ""}`} onClick={() => { setActiveStage(index); setIsPlaying(false) }} aria-label={`Ver etapa ${item.title}`} aria-pressed={activeStage === index}><span className="point-number">{item.number}</span><Icon aria-hidden="true" /></button>
             })}
           </div>
-          <div className="scene-caption"><span>ETAPA {stage.number}</span><strong>{stage.short}</strong></div>
+          <div className="scene-caption"><span>ETAPA {stage.number} DE 05</span><strong>{stage.short}</strong></div>
+          <div className="scene-guide" aria-hidden="true">
+            <span className="guide-title">Siga o caminho da água</span>
+            <span className="guide-line" />
+            <span className="guide-hint">Clique em um número para explorar</span>
+          </div>
+          <div className="scene-labels" aria-hidden="true">
+            <span className="scene-label label-roof">1 · Telhado</span>
+            <span className="scene-label label-gutter">2 · Calha</span>
+            <span className="scene-label label-flush">3 · Descarte</span>
+            <span className="scene-label label-filter">4 · Filtro</span>
+            <span className="scene-label label-tank">5 · Cisterna</span>
+          </div>
         </div>
 
         <div className="simulation-info">
-          <div className="info-topline"><span>Como funciona</span><span className="live-dot">● animação ativa</span></div>
+          <div className="info-topline"><span>Como funciona</span><span className={`live-dot ${isPlaying ? "is-playing" : ""}`}>{isPlaying ? "● percurso automático" : "● escolha uma etapa"}</span></div>
           <div className="info-heading"><span className="info-index">{stage.number}</span><div><p className="info-kicker">Etapa do sistema</p><h3>{stage.title}</h3></div></div>
           <p className="info-description">{stage.description}</p>
           <div className="stage-progress" aria-label={`Etapa ${activeStage + 1} de ${stages.length}`}>{stages.map((item, index) => <button key={item.id} onClick={() => { setActiveStage(index); setIsPlaying(false) }} className={activeStage === index ? "is-current" : ""} aria-label={`Selecionar ${item.title}`}><span /></button>)}</div>
